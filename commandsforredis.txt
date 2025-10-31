@@ -1,0 +1,22 @@
+Step 1: Update the system and install prerequisites
+sudo apt update -y
+sudo apt upgrade -y
+sudo apt install -y curl wget tar python3 unzip ntpdate
+
+Step 2: Install AWS CLI (to download the package from S3)
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+unzip /tmp/awscliv2.zip -d /tmp
+sudo /tmp/aws/install
+aws --version
+
+Step 3: Download Redis Enterprise package from S3
+mkdir -p /tmp/redis-enterprise
+aws s3 cp s3://redis-arshad-assignment/Arshad/redislabs-8.0.2-17-jammy-amd64.tar /tmp/redis-enterprise.tar
+
+Step 4: Extract the package
+sudo tar -xf /tmp/redis-enterprise.tar -C /tmp/redis-enterprise
+ls /tmp/redis-enterprise
+
+Step 5: Verify services
+cd /tmp/redis-enterprise
+sudo ./install.sh -y
